@@ -47,5 +47,5 @@ The **MegaCli** command line tool has to be downloaded and installed. This can b
 - Insert the USB drive to the server and copy the _zip_ file using the following command to the */root/Downloads* directory.
 
 ```console
-cp /media/usb_drive_name/8-07-14_MegaCLI /root/Downloads
+root@localhost:~$ cp /media/usb_drive_name/8-07-14_MegaCLI /root/Downloads
 ```
