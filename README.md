@@ -13,7 +13,7 @@ IBM System X3550 M2 are installed with ServeRAID 1015 RAID Controllers this Hard
 
 #### Flashing USB Drive with Centos 6
 
---------------------------------------------------------;
+----------------------------------- 
 First Centos 6 ISO has to bee flashed on an USB for us to install it onto or RAID Clearer Server. Use your workstation to complete this process.
 
 - **Rufus** is an utility that helps format and create bootable USB flash drives. This can be downloaded from [here](https://rufus.ie/)
@@ -26,7 +26,7 @@ Now create a bootable drive using **Rufus**.
 
 #### Installation and Setting up the Centos Environment for running the utility
 
------------------------------------------------------------------------------------;
+----------------------------------------------
 
 - Enter the BIOS of the system and choose your USB drive as boot drive.
 
