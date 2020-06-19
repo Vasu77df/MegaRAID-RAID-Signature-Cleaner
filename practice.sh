@@ -1,9 +1,9 @@
-sleep 7 &
-PID=$!
-i=1
-sp="/-\|"
-echo -n ' '
-while [ -d /proc/$PID ]
-do 
-printf "\b${sp:i++%${#sp}:1}"
-done
+read -p "enter only numbers: " -r rr
+if ! [[ $rr =~ ^[0-9]+$ ]]
+    then 
+        echo "sorry only integers"
+    else
+        echo "dumb"
+fi
+
+
