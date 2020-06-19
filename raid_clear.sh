@@ -9,7 +9,6 @@ function clearing {
         ./MegaCli64 -CfgForeign -Clear -aALL
         sleep 1
 	echo "Converting the Disk into JBOD mode....."
-	echo $slot_number
         ./MegaCli64 -PDMakeJBOD -PhysDrv[64:$slot_number] -aALL
         sleep 1
         echo "----------------Done Clearing RAID Configuration---------------"
