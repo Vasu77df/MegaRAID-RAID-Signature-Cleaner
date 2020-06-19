@@ -28,7 +28,7 @@ Now create a bootable drive using **Rufus**.
 
 ----------------------------------------------
 
-- Enter the BIOS of the system and choose your USB drive as boot drive.
+- Plug in the usb Drive to the server and enter the BIOS to choose the USB drive as boot drive.
 
 - Run through the installer as directed and setup your login credentials
 
@@ -40,7 +40,12 @@ For our utility to run certain prerequistes have to be installed and configured.
 
 The **MegaCli** command line tool has to be downloaded and installed. This can be downloaded [here](https://www.broadcom.com/support/download-search?dk=megacli)
 
-Use your workstation to download this package and copy the zip file to a USB Drive
+- Use your workstation to download this package and copy the _zip_ file to a USB Drive
 
 ![megacli download page](https://github.com/Vasu77df/MegaRAID-RAID-Signature-Cleaner/blob/master/images/mega_cli_download_page.png)
 
+- Insert the USB drive to the server and copy the _zip_ file using the following command to the */root/Downloads* directory.
+
+'''bash
+    cp /media/usb_drive_name/8-07-14_MegaCLI /root/Downloads
+'''
