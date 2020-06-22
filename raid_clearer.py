@@ -26,9 +26,16 @@ def get_confirmation(slot_number):
     if dec in('y', 'yes', 'Y', 'Yes'):
         clearing(slot_number)
     elif dec in('n', 'N', 'No', 'no'):
-        break
+        exit
     else:
         input("Please enter 'y' or 'n: " )
+
+def output_parser(output):
+    output = output.stdout
+    output = output.decode('utf-8')
+    output = output.replace('\n', ' ')
+
+    return output
 
 
 if __name__=='__main__':
@@ -37,26 +44,29 @@ if __name__=='__main__':
     print("List of all the available Disk attached to the controller:")
     list_disks = './MegaCli64 -PDList -aALL | grep -i "enclosure device id\|slot number\|Drive\'s Position\|Device id\|Firmware state\|foreign state"'
     l_disks = sb.run(list_disks, shell=True, stdout=sb.PIPE, stderr=sb.STDOUT, cwd='/opt/MegaRAID/MegaCli/')
+    l_disks = output_parser(l_disks)
     print(l_disks)
     
     nu_disks = input("How many disks would you like to clear?: ")
+    state = isinstance(nu_disks, int)
+    if nu_disk <= 1 and nu_disk >= 6:
+        nu_disk = input("You can clear upto only 6 disks in this server. Please enter a valid input: ")
 
-    if nu_disk <= 1 and nu_disk >= 6 and nu_disk.isdigit():
-        nu_disks = input("You can clear upto only 6 disks in this server. Please enter a valid input: ")
-    elif !isinstance(nu_disks, int):
+    elif not state:
         nu_disks = input("Invalid Input! Please enter a valid intput")
     else:
-        break
+        exit
 
     for i in range(0, nu_disks):
         slot_number = input("You can clear the Foreign RAID signature of the Disk by specifying the \
              slot number(please enter the slot of the disk one by one): ")
-        if !isinstance(slot_number, int)
+        state_slot = isinstance(slot_number, int) 
+        if not state_slot:
             slot_number = input("Invalid Input please enter the slot number: ")
         else:
             break
 
-        getconfirmation(slot_number)
+        get_confirmation(slot_number)
 
         if i <= nu_disk - 1:
             print("---------------------------Next Disk---------------------------")
@@ -64,6 +74,7 @@ if __name__=='__main__':
     print("--------------------- Current Configuration--------------------")
     current_config = './MegaCli64 -PDList -aALL | grep -i "enclosure device id\|slot number\|Drive\'s Position\|Device id\|Firmware state\|foreign state"'
     c_disks = sb.run(current_config, shell=True, stdout=sb.PIPE, stderr=sb.STDOUT, cwd='/opt/MegaRAID/MegaCli/')
+    c_disks = output_parser(c_disks)
     print(c_disks)
 
     print("----------------------------Exiting----------------------------")
