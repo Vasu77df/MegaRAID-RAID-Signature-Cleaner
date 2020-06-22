@@ -124,12 +124,12 @@ root@localhost:~$ ./raid_clear.sh
 cd /opt/MegaRAID/MegaCli/
 
 function clearing {
-	echo "Clearing RAID configuration of Disk in Slot: $slot_number"
+echo "Clearing RAID configuration of Disk in Slot: $slot_number"
         sleep 1 
-	echo "Clearing Foreign Configuration......"
+echo "Clearing Foreign Configuration......"
         ./MegaCli64 -CfgForeign -Clear -aALL
         sleep 1
-	echo "Converting the Disk into JBOD mode....."
+echo "Converting the Disk into JBOD mode....."
         ./MegaCli64 -PDMakeJBOD -PhysDrv[64:$slot_number] -aALL
         sleep 1
         echo "----------------Done Clearing RAID Configuration---------------"
