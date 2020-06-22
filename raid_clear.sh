@@ -48,6 +48,10 @@ do
                 read -p "Invalid Input! Please enter the slot number: " -r $nu_disks
         fi
 
+        if ($slot_number = 0) || ($slot_number = 1); then
+                read -p "The Disk in the Slot you have chosen has O.S installed. Please choose a different slot: " -r slot_number
+                fi 
+
         getconfirmation
 
         if [ $c -lt $nu_disks ]; then

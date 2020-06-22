@@ -6,6 +6,7 @@ def clearing(slot_number):
     
     ''' This function cleares the RAID Signature of Disk and changing 
     the disk into a JBOD by accepting the slot number as an argument
+    
     Arg: slot_number (integer)'''
     
     print("Clearing the RAID Signature of Disk in Slot:{}".format(slot_number))
