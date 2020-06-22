@@ -2,6 +2,26 @@
 
 A bash script to clear RAID Signature on disks using the MegaRAID Cli Command Line Tool
 
+## Running the Script on Existing setup
+
+- Login to the server as root 
+
+- Password: americaneagle2020
+
+- navigate to *root* directory
+
+- raid_clear.sh by entering the cmd
+
+```console
+root@localhost:~$ bash raid_clear.sh
+```
+ - or by making the file executable 
+
+ ```console 
+ root@localhost:~$ chmod +x raid_clear.sh
+ root@localhost:~$ ./raid_clear.sh
+ ```
+ 
 ## RAID Signature Cleaner Setup
 
 This is a guide to create and a setup a server to erase RAID Signature of old disks using the MegaRAID controller's MegaCli Command Line tool or using the script developed for easier operation.

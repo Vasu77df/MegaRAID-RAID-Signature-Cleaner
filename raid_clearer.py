@@ -2,9 +2,8 @@
 from time import sleep
 import subprocess as sb
 
-def process()
-
 def clearing(slot_number):
+    
     ''' This function cleares the RAID Signature of Disk and changing 
     the disk into a JBOD by accepting the slot number as an argument
     Arg: slot_number (integer)'''
@@ -22,10 +21,10 @@ def clearing(slot_number):
     print("----------------Done Clearing RAID Configuration---------------")
     sleep(1)
 
-def get_confirmation( slot_number):
+def get_confirmation(slot_number):
     dec = input("Are you sure you want to clear RAID Signature in slot: {} ? [y/n]:".format(slot_number))
     if dec in('y', 'yes', 'Y', 'Yes'):
-        clearing
+        clearing(slot_number)
     elif dec in('n', 'N', 'No', 'no'):
         break
     else:
@@ -43,21 +42,21 @@ if __name__=='__main__':
     nu_disks = input("How many disks would you like to clear?: ")
 
     if nu_disk <= 1 and nu_disk >= 6 and nu_disk.isdigit():
-        nu_disks = int(input("You can clear upto only 6 disks in this server. Please enter a valid input: "))
-    elif !nu_disk.isdigit():
-        nu_disks = int(input("Invalid Input! Please enter a valid intput"))
+        nu_disks = input("You can clear upto only 6 disks in this server. Please enter a valid input: ")
+    elif !isinstance(nu_disks, int):
+        nu_disks = input("Invalid Input! Please enter a valid intput")
     else:
         break
 
     for i in range(0, nu_disks):
         slot_number = input("You can clear the Foreign RAID signature of the Disk by specifying the \
              slot number(please enter the slot of the disk one by one): ")
-        if !slot_number.isdigit():
+        if !isinstance(slot_number, int)
             slot_number = input("Invalid Input please enter the slot number: ")
         else:
             break
 
-        getconfirmation()
+        getconfirmation(slot_number)
 
         if i <= nu_disk - 1:
             print("---------------------------Next Disk---------------------------")
