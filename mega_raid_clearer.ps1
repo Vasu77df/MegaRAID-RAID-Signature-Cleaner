@@ -1,14 +1,16 @@
-﻿Set-Location /root/8-07-14_MegaCLI/Windows
+﻿Set-Location C:\Users\Administrator\Desktop\8-07-14_MegaCLI\Windows
 
 function Start-Clearing {
     Write-Host "Clearing RAID configuration of Disk in Slot: $slot_number"
     Start-Sleep -Seconds 1
     Write-Host "Clearing Foreign Configuration......"
-    MegaCli.exe -CfgForeign -Clear -aALL
+    .\MegaCli.exe -CfgForeign -Clear -aALL
+    Start-Sleep -Seconds 1
+    Write-Host "Making the Disk into Unconfigured Good if in Unconfigured Bad state (ignore failure if occurs)"
+    .\MegaCli.exe -PDMakeGood -PhysDrv[64:$slot_number] -aALL
     Start-Sleep -Seconds 1
     Write-Host "Converting the Disk into JBOD mode....."
-    MegaCli.exe -PDMakeGood -PhysDrv[64:$slot_number] -aALL
-    MegaCli.exe -PDMakeJBOD -PhysDrv[64:$slot_number] -aALL
+    .\MegaCli.exe -PDMakeJBOD -PhysDrv[64:$slot_number] -aALL
     Start-Sleep -Seconds 1
     Write-Host "----------------Done Clearing RAID Configuration---------------"
     Start-Sleep -Seconds 1
@@ -26,14 +28,18 @@ function Get-Confirmation {
         'N' {break}
         'no' {break}
         'No' {break}
-        Default {$OPT = Read-Host -Prompt "Please enter 'y' or 'n' "}
+        Default {$OPT = Read-Host -Prompt "Please enter 'y' or 'n' "
+        if ($OPT -eq "y") {
+            Start-Clearing
+            }
     }
     
+}
 }
 
 Write-Host "---------------------Welcome to RAID Cleaner-------------------"
 Write-Host "List of all the available drives attached to the controller: "
-MegaCli.exe -PDList -aALL | Select-String -Pattern "Enclosure Device Id", "Slot Number", "Drive's Position", "Device Id", "Firmware State". "Foreign State"
+.\MegaCli.exe -PDList -aALL | Select-String -Pattern "Enclosure Device Id", "Slot Number", "Drive's Position", "Device Id", "Firmware State", "Foreign State"
 
 $nu_disk = Read-Host -Prompt "How many disks would you like to clear?: "
 
@@ -47,9 +53,11 @@ for ($i = 0; $i -lt $nu_disk; $i++) {
         $slot_number = Read-Host -Prompt "Invalid Input! Please enter the slot number: "
     }
 
-    if (($slot_number -eq 0) -or ($slot_number -eq 0)) {
+    if (($slot_number -eq 0) -or ($slot_number -eq 1)) {
         $slot_number = Read-Host -Prompt "The Disk in the Slot you have chosen has O.S installed. Please choose a different slot: "
     }
+
+    Get-Confirmation
 
     if ( $i -lt $nu_disk) {
         Write-Host "---------------------------Next Disk---------------------------"
@@ -57,7 +65,7 @@ for ($i = 0; $i -lt $nu_disk; $i++) {
 }
 
 Write-Host "--------------------- Current Configuration--------------------"
-MegaCli.exe -PDList -aALL | Select-String -Pattern "Enclosure Device Id", "Slot Number", "Drive's Position", "Device Id", "Firmware State". "Foreign State"
+.\MegaCli.exe -PDList -aALL | Select-String -Pattern "Enclosure Device Id", "Slot Number", "Drive's Position", "Device Id", "Firmware State", "Foreign State"
 
 Write-Host "----------------------------Exiting----------------------------"
 
