@@ -67,6 +67,7 @@ for ($i = 0; $i -lt $nu_disk; $i++) {
 Write-Host "--------------------- Current Configuration--------------------"
 .\MegaCli.exe -PDList -aALL | Select-String -Pattern "Enclosure Device Id", "Slot Number", "Drive's Position", "Device Id", "Firmware State", "Foreign State"
 
+Set-Location C:\Users\Administrator
 Write-Host "----------------------------Exiting----------------------------"
 
 Start-Sleep -Seconds 2
