@@ -145,7 +145,9 @@ Start-Sleep -Seconds 2
 ```
 
 ## Setup for Centos 6
-  
+
+---------------------------------
+
 ### Installing Centos 6
 
 ---------------------------------
