@@ -144,7 +144,9 @@ Start-Sleep -Seconds 2
 
 ```
 
-#### Installing Centos 6
+## Setup for Centos 6
+  
+### Installing Centos 6
 
 ---------------------------------
 IBM System X3550 M2 are installed with ServeRAID 1015 RAID Controllers this Hardware RAID Controller is only detected and supported in Centos 6 and Centos 7. They are not supported in Centos 8 and above.
