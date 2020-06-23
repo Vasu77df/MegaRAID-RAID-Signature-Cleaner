@@ -1,8 +1,30 @@
 # MegaRAID RAID-Signature-Cleaner
 
-A bash script to clear RAID Signature on disks using the MegaRAID Cli Command Line Tool
+This is a guide to setup or run the Raid-Signature Cleaner Application on Either Windows or CentOS 6 Linux
 
-## running the Script on Existing setup
+## Running the application on existing machines with setup already completed
+
+### On Windows Server
+
+- Login to the machine as administrator
+
+- Password: *Americaneagle#2020*
+
+- Open PowerShell
+
+- Navigate to Desktop Directory where the application resides using the command
+
+```powershell
+PS C:\Users> Set-Location C:\Users\Adminstrator\Desktop
+```
+
+- Run the application using the following command
+
+```powershell
+PS C:\Users> .\mega_raid_clearer.ps1
+```
+
+### On CentOS 6
 
 - Login to the server as root 
 
@@ -16,9 +38,9 @@ A bash script to clear RAID Signature on disks using the MegaRAID Cli Command Li
 root@localhost:~$ bash raid_clear.sh
 ```
 
- - or by make the file executable and run it this way!
+- or by make the file executable and run it this way!
 
- ```console 
+ ```console
  root@localhost:~$ chmod +x raid_clear.sh
  root@localhost:~$ ./raid_clear.sh
  ```
@@ -27,14 +49,31 @@ root@localhost:~$ bash raid_clear.sh
 
 This is a guide to create and a setup a server to erase RAID Signature of old disks using the MegaRAID controller's MegaCli Command Line tool or using the script developed for easier operation.
 
-### Installing Centos 6
+### Setup for Window Server
+
+- Install Windows Server as usual and login as admin
+
+- The **MegaCli** command line tool has to be downloaded and installed. This can be downloaded [here](https://www.broadcom.com/support/download-search?dk=megacli)
+
+- Unzip the contents of the file and save it in the Desktop Directory.
+
+- Download the *mega_raid_cleaner.ps1* Powershell script from [https://github.com/Vasu77df/MegaRAID-RAID-Signature-Cleaner/blob/master/raid_clear.sh](https://github.com/Vasu77df/MegaRAID-RAID-Signature-Cleaner/blob/master/raid_clear.sh)
+
+- Save this file in the Desktop Directory and run the application using the following command 
+
+```powershell
+PS C:\Users> .\mega_raid_clearer.ps1
+```
+
+#### Installing Centos 6
 
 ---------------------------------
 IBM System X3550 M2 are installed with ServeRAID 1015 RAID Controllers this Hardware RAID Controller is only detected and supported in Centos 6 and Centos 7. They are not supported in Centos 8 and above.
 
-#### Flashing USB Drive with Centos 6
+##### Flashing USB Drive with Centos 6
 
------------------------------------ 
+-----------------------------------
+
 First Centos 6 ISO has to bee flashed on an USB for us to install it onto or RAID Clearer Server. Use your workstation to complete this process.
 
 - **Rufus** is an utility that helps format and create bootable USB flash disks. This can be downloaded from [here](https://rufus.ie/)
@@ -45,7 +84,7 @@ Now create a bootable drive using **Rufus**.
 
 ![rufus setup](https://github.com/Vasu77df/MegaRAID-RAID-Signature-Cleaner/blob/master/images/rufus.png)
 
-#### Installation and Setting up the Centos Environment for running the utility
+###### Installation and Setting up the Centos Environment for running the utility
 
 ----------------------------------------------
 
@@ -55,7 +94,7 @@ Now create a bootable drive using **Rufus**.
 
 - The username after intial installation is _root_ and the password is the credentials you have setup during installation
 
-##### Downloading prerequistes and packages
+####### Downloading prerequistes and packages
 
 For our utility to run certain prerequistes have to be installed and configured.
 
@@ -114,7 +153,7 @@ root@localhost:~$ megacli -h
 
 **Now the MegCli RAID Command Line Tool is now installed** 
 
-### Setting up and running the RAID Cleaner Bash Script
+#### Setting up and running the RAID Cleaner Bash Script
 
 - Download the *raid_clear.sh* Bash script from [https://github.com/Vasu77df/MegaRAID-RAID-Signature-Cleaner/blob/master/raid_clear.sh](https://github.com/Vasu77df/MegaRAID-RAID-Signature-Cleaner/blob/master/raid_clear.sh) and copy the script to an USB Drive.
 
@@ -137,7 +176,7 @@ root@localhost:~$ chmod +x raid_clear.sh
 root@localhost:~$ ./raid_clear.sh
 ```
 
-##### You can also copy the shell script and create your own bash script
+###### You can also copy the shell script and create your own bash script
 
 ```bash
 #!/bin/bash
@@ -206,9 +245,9 @@ sleep 3
 
 ```
 
-## Appendix A
+### Appendix A
 
-### MegaCli commands to manually erase the RAID Signature
+#### MegaCli commands to manually erase the RAID Signature
 
 To list all attached Drives:
 
