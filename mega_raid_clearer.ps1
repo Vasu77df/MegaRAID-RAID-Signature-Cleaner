@@ -15,8 +15,19 @@ function Start-Clearing {
 }
 
 function Get-Confirmation {
-    $OPTION = Read-Host -Prompt "Are you sure you want to clear RAID configuration in slot: $slot_number ?[y/n]: "
+    $OPT = Read-Host -Prompt "Are you sure you want to clear RAID configuration in slot: $slot_number ?[y/n]: "
     
+    switch ($OPT) {
+        'Y' { Start-Clearing }
+        'y' { Start-Clearing }
+        'Yes' { Start-Clearing }
+        'yes' { Start-Clearing }
+        'n' {break}
+        'N' {break}
+        'no' {break}
+        'No' {break}
+        Default {$OPT = Read-Host -Prompt "Please enter 'y' or 'n' "}
+    }
     
 }
 
