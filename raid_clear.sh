@@ -8,8 +8,10 @@ function clearing {
 	echo "Clearing Foreign Configuration......"
         ./MegaCli64 -CfgForeign -Clear -aALL
         sleep 1
-	echo "Converting the Disk into JBOD mode....."
+	echo "Making the Disk into Unconfigured Good if in Unconfigured Bad state (ignore failure if occurs)"
         ./MegaCli64 -PDMakeGood -PhysDrv[64:$slot_number] -aALL
+        sleep 1
+        echo "Converting the Disk into JBOD mode....."
         ./MegaCli64 -PDMakeJBOD -PhysDrv[64:$slot_number] -aALL
         sleep 1
         echo "----------------Done Clearing RAID Configuration---------------"
@@ -32,7 +34,7 @@ function getconfirmation() {
         esac
 }
 echo "---------------------Welcome to RAID Cleaner-------------------"
-echo "List of all available drives attached to the controller:"
+echo "List of all available drives attached to the controller: "
 ./MegaCli64 -PDList -aALL | grep -i "enclosure device id\|slot number\|Drive's Position\|Device id\|Firmware state\|foreign state"
 read -p "How many disks would you like to clear?: " -r nu_disks
 if ! [[ $nu_disks =~ ^[0-9]+$ ]]
